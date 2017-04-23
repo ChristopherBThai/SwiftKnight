@@ -6,7 +6,9 @@ public class PlayerAttack : MonoBehaviour {
 
 	public float attackLength;
 	public float attackDst;
+	public GameObject score;
 	private SpriteRenderer sr;
+	private Rigidbody2D rb;
 	private Animator animator;
 	private bool attacking;
 	private float timer;
@@ -16,6 +18,7 @@ public class PlayerAttack : MonoBehaviour {
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
 		animator = GetComponent<Animator> ();
+		rb = GetComponent<Rigidbody2D> ();
 		dst = new Vector3 ();
 	}
 	
@@ -29,6 +32,12 @@ public class PlayerAttack : MonoBehaviour {
 		animator.SetTrigger ("PlayerAttack");
 		timer = attackLength;
 		attacking = true;
+		if (sr.flipX)
+			dst.x = -attackDst;
+		else
+			dst.x = attackDst;
+		rb.AddForce (dst);
+		gameObject.layer = 12;
 	}
 
 	bool attackTimer(){
@@ -36,12 +45,15 @@ public class PlayerAttack : MonoBehaviour {
 			timer -= Time.deltaTime;
 			if (timer <= 0) {
 				attacking = false;
+				gameObject.layer = 0;
+				rb.AddForce (-rb.velocity);
+				//rb.velocity = new Vector3 ();
 			}
-			if (sr.flipX)
-				dst.x = -attackDst * Time.deltaTime;
-			else
-				dst.x = attackDst * Time.deltaTime;
-			transform.Translate (dst);
+			//if (sr.flipX)
+			//	dst.x = -attackDst * Time.deltaTime;
+			//else
+			//	dst.x = attackDst * Time.deltaTime;
+			//transform.Translate (dst);
 			return true;
 		}
 		return false;
@@ -60,8 +72,9 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	void checkCollision(GameObject obj){
-		if (attacking && obj.tag == "Enemy") {
+		if (!attacking && obj.tag == "Enemy") {
 			obj.GetComponent<EnemyMove> ().die ();
+			score.GetComponent<TextUpdate> ().addScore (1);
 		}
 	}
 }
