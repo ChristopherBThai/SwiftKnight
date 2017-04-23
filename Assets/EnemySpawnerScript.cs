@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawnerScript : MonoBehaviour {
 
-	public GameObject target;
+	public GameObject target,score;
 	public float spawnInterval;
 	public Transform[] groundSpawnPoint,flyingSpawnPoint;
 	public GameObject[] groundEnemies,flyingEnemies;
@@ -32,11 +32,11 @@ public class EnemySpawnerScript : MonoBehaviour {
 		if (Random.value > .5) { //Ground
 			GameObject enemy = Instantiate(groundEnemies[(int)Random.Range(0,groundEnemies.Length)]);
 			enemy.transform.position = (groundSpawnPoint[(int)Random.Range(0,groundSpawnPoint.Length)].transform.position);
-			enemy.GetComponent<EnemyMove>().setTarget (target);
+			enemy.GetComponent<EnemyMove>().setTarget (target,score);
 		} else { //Flying
 			GameObject enemy = Instantiate(flyingEnemies[(int)Random.Range(0,flyingEnemies.Length)]);
 			enemy.transform.position = (flyingSpawnPoint[(int)Random.Range(0,flyingSpawnPoint.Length)].transform.position);
-			enemy.GetComponent<EnemyMove>().setTarget (target);
+			enemy.GetComponent<EnemyMove>().setTarget (target,score);
 		}
 	}
 }

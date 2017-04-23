@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour {
 	public float speed;
 	public int health;
-	public GameObject target;
+	public GameObject target,score;
 	private Vector3 vel;
 	private bool dead;
 	private Animator animator;
@@ -40,8 +40,9 @@ public class EnemyMove : MonoBehaviour {
 		transform.Translate (vel);
 	}
 
-	public void setTarget(GameObject nTarget){
+	public void setTarget(GameObject nTarget,GameObject nScore){
 		target = nTarget;
+		score = nScore;
 	}
 
 	public void die(){
@@ -56,6 +57,7 @@ public class EnemyMove : MonoBehaviour {
 	}
 
 	public void destroy(){
+		score.GetComponent<TextUpdate> ().addScore (1);
 		Destroy (gameObject);
 	}
 }

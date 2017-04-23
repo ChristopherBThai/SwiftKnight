@@ -6,7 +6,6 @@ public class PlayerAttack : MonoBehaviour {
 
 	public float attackLength;
 	public float attackDst;
-	public GameObject score;
 	private SpriteRenderer sr;
 	private Rigidbody2D rb;
 	private Animator animator;
@@ -73,8 +72,6 @@ public class PlayerAttack : MonoBehaviour {
 
 	void checkCollision(GameObject obj){
 		if (!attacking && obj.tag == "Enemy") {
-			obj.GetComponent<EnemyMove> ().die ();
-			score.GetComponent<TextUpdate> ().addScore (1);
 		}
 	}
 }

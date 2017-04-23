@@ -18,7 +18,6 @@ public class PlayerHitbox : MonoBehaviour {
 		
 	void OnTriggerEnter2D(Collider2D col){
 		checkCollision (col.gameObject);
-		print (col.gameObject.tag);
 	}
 
 	void checkCollision(GameObject obj){
