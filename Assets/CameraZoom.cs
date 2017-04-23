@@ -28,7 +28,7 @@ public class CameraZoom : MonoBehaviour {
 			pos = cam.transform.position;
 			pos += (player.transform.position - pos)*speed;
 			cam.transform.position = pos;
-		} else if(!player.GetComponent<PlayerMovement>().isDead() && Mathf.Abs(cam.orthographicSize - defaultZoom) > .1f){
+		} else if(!player.GetComponent<PlayerMovement>().isDead() && Mathf.Abs(cam.orthographicSize - defaultZoom) > .001f){
 			cam.orthographicSize += (defaultZoom - cam.orthographicSize)*speed;
 			pos = cam.transform.position;
 			pos += (defaultPos - pos)*speed;

@@ -34,6 +34,13 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
+	public void reset(){
+		dead = false;
+		animator.SetBool ("PlayerWalk", false);
+		animator.SetBool ("PlayerDeath", false);
+		gameOverText.GetComponent<Animator> ().SetBool ("GameOver", false);
+	}
+
 	//Shoots a hook
 	private void hookShoot(){
 		if (Input.GetKeyDown (KeyCode.Space)) {
@@ -84,7 +91,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void showGameOverText(){
-		gameOverText.GetComponent<Animator> ().SetBool ("GameOver", true);
+		if(dead)
+			gameOverText.GetComponent<Animator> ().SetBool ("GameOver", true);
 	}
 
 	public bool isDead(){

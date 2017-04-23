@@ -29,6 +29,13 @@ public class PlayerAttack : MonoBehaviour {
 			attack ();
 	}
 
+	public void reset(){
+		attacking = false;
+		timer = 0;
+		dead = false;
+		animator.SetBool ("PlayerAttack",false);
+	}
+
 	void attack(){
 		animator.SetBool ("PlayerAttack",true);
 		timer = attackLength;

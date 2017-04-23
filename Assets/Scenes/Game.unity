@@ -368,7 +368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Kills: '
+  m_Text: 'Kills: 0'
 --- !u!222 &381795298
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9dda6a3242c55a7439e4bb2a0f2b6b91, type: 2}
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ff6a23a2c36ba24f9569e36a8b5ff07, type: 2}
   m_IsPrefabParent: 0
@@ -684,6 +684,7 @@ GameObject:
   - component: {fileID: 670944144}
   - component: {fileID: 670944143}
   - component: {fileID: 670944142}
+  - component: {fileID: 670944147}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -762,6 +763,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670944147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 670944141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3626bbd6eeb1064b83808945d37b011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1443886809}
+  zoomedZoom: 0.3
 --- !u!1 &966511223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1187,7 @@ GameObject:
   - component: {fileID: 1946825241}
   - component: {fileID: 1946825240}
   - component: {fileID: 1946825242}
+  - component: {fileID: 1946825243}
   m_Layer: 5
   m_Name: GameOverText
   m_TagString: Untagged
@@ -1254,6 +1269,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1946825243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1946825238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a680550503a9c44a3f0fa7ba68268b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1443886809}
+  deletor: {fileID: 1796361951702808, guid: ce22b3880c4415241b5d108099456eb6, type: 2}
 --- !u!1 &2006497674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,7 +1390,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4029694108935502, guid: 4b7a270806ea7fc4fa46ab95992b53b2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.123
+      value: -0.557
       objectReference: {fileID: 0}
     - target: {fileID: 4029694108935502, guid: 4b7a270806ea7fc4fa46ab95992b53b2, type: 2}
       propertyPath: m_LocalPosition.z
