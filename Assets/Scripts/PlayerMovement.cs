@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float speed;
 	public GameObject hook;
+	public GameObject gameOverText;
 
 	private SpriteRenderer sr;
 	private Rigidbody2D rb;
@@ -80,6 +81,10 @@ public class PlayerMovement : MonoBehaviour {
 	public void die(){
 		dead = true;
 		animator.SetBool ("PlayerDeath", true);
+	}
+
+	public void showGameOverText(){
+		gameOverText.GetComponent<Animator> ().SetBool ("GameOver", true);
 	}
 
 	public bool isDead(){

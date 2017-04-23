@@ -10,6 +10,7 @@ public class EnemyMove : MonoBehaviour {
 	private bool dead;
 	private Animator animator;
 	private SpriteRenderer sr;
+	private int value;
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +25,9 @@ public class EnemyMove : MonoBehaviour {
 		if(!dead)
 			move ();
 		if (transform.position.y < -10)
-			die ();
+			die (0);
 	}
+
 
 	void move(){
 		vel.x = 0;
@@ -45,12 +47,13 @@ public class EnemyMove : MonoBehaviour {
 		score = nScore;
 	}
 
-	public void die(){
+	public void die(int scoreCost){
 		dead = true;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
 		GetComponent<BoxCollider2D> ().isTrigger = true;
 		animator.SetTrigger ("EnemyExplode");
 		gameObject.tag = "Dead";
+		value = scoreCost;
 	}
 
 	public bool isDead(){
@@ -58,7 +61,7 @@ public class EnemyMove : MonoBehaviour {
 	}
 
 	public void destroy(){
-		score.GetComponent<TextUpdate> ().addScore (1);
+		score.GetComponent<TextUpdate> ().addScore (value);
 		Destroy (gameObject);
 	}
 }

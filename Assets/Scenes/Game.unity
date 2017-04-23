@@ -585,6 +585,11 @@ Prefab:
       propertyPath: m_Size.x
       value: 1.0599289
       objectReference: {fileID: 0}
+    - target: {fileID: 212881420636465020, guid: 6ff6a23a2c36ba24f9569e36a8b5ff07,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dda6a3242c55a7439e4bb2a0f2b6b91, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ff6a23a2c36ba24f9569e36a8b5ff07, type: 2}
   m_IsPrefabParent: 0
@@ -1167,6 +1172,7 @@ GameObject:
   - component: {fileID: 1946825239}
   - component: {fileID: 1946825241}
   - component: {fileID: 1946825240}
+  - component: {fileID: 1946825242}
   m_Layer: 5
   m_Name: GameOverText
   m_TagString: Untagged
@@ -1204,7 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1231,6 +1237,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1946825238}
+--- !u!95 &1946825242
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1946825238}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf9e0d42666b3b6439d2f21d70e6f156, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2006497674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1457,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1254714099922540, guid: 4b7a270806ea7fc4fa46ab95992b53b2, type: 2}
       propertyPath: m_Layer
-      value: 12
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114837923498585968, guid: 4b7a270806ea7fc4fa46ab95992b53b2,
+        type: 2}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 1946825238}
+    - target: {fileID: 50778765281661348, guid: 4b7a270806ea7fc4fa46ab95992b53b2,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b7a270806ea7fc4fa46ab95992b53b2, type: 2}

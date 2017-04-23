@@ -75,6 +75,7 @@ public class PlayerAttack : MonoBehaviour {
 
 	void checkCollision(GameObject obj){
 		if (!attacking && obj.tag == "Enemy") {
+			obj.GetComponent<EnemyMove> ().die (0);
 			GetComponent<PlayerMovement>().die ();
 			dead = true;
 		}

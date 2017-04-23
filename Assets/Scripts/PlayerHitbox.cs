@@ -22,7 +22,7 @@ public class PlayerHitbox : MonoBehaviour {
 
 	void checkCollision(GameObject obj){
 		if ((player.GetComponent<PlayerAttack>().isAttacking()) && obj.tag == "Enemy") {
-			obj.GetComponent<EnemyMove> ().die ();
+			obj.GetComponent<EnemyMove> ().die (1);
 		}
 	}
 }
