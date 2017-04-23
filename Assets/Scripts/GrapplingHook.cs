@@ -52,6 +52,12 @@ public class GrapplingHook : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
+		if ((col.gameObject.tag == "Background")) {
+			animator.SetTrigger ("Disappear");
+			rb.velocity = new Vector3 ();
+		}
+		if (!(col.gameObject.tag == "Grabable"))
+			return;
 		animator.SetTrigger ("Disappear");
 		rb.velocity = new Vector3 ();
 		vel.x = (transform.position.x - player.transform.position.x);

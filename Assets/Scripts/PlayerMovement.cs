@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 	private SpriteRenderer sr;
 	private Rigidbody2D rb;
 	private Animator animator;
+	private PlayerAttack pa;
 
 	private Vector2 vel;
 
@@ -18,13 +19,16 @@ public class PlayerMovement : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		animator = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
+		pa = GetComponent<PlayerAttack> ();
 		vel = new Vector3 (speed,0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		hookShoot ();
-		move ();
+		if (!pa.isAttacking ()) {
+			hookShoot ();
+			move ();
+		}
 	}
 
 	//Shoots a hook
