@@ -7,6 +7,7 @@ TagManager:
   - Background
   - Item
   - Light
+  - Enemy
   layers:
   - Default
   - TransparentFX

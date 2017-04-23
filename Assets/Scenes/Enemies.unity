@@ -147,6 +147,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1936812757017338, guid: c97b5c331c4174f3782299e012bcdde7, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c97b5c331c4174f3782299e012bcdde7, type: 2}
   m_IsPrefabParent: 0
@@ -166,6 +170,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6dcd5f86c1c4d899123b2dd0572c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
+  Health: 100
+  Target: {fileID: 753491990}
+--- !u!4 &753491990 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4247349251654812, guid: c97b5c331c4174f3782299e012bcdde7,
+    type: 2}
+  m_PrefabInternal: {fileID: 753491983}
 --- !u!1001 &1094950436
 Prefab:
   m_ObjectHideFlags: 0

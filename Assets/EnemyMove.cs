@@ -9,22 +9,21 @@ public class EnemyMove : MonoBehaviour {
 	public Transform Target;
 	private GameObject Enemy;
 	private GameObject Player;
-
+	private Vector3 vel3;
 	// Use this for initialization
 	void Start () {
+		vel3 = new Vector3 ();
 		Enemy = GameObject.FindGameObjectWithTag ("Enemy");
-		//Player = GameObject.FindGameObjectWithTag ("Player");
+		Player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 velocity = new Vector2(transform.position.x * Speed, transform.position.y * Speed);
-		GetComponent<Rigidbody2D>().velocity = -velocity;
-
-
-
-//		Vector2 velocity = new Vector2((transform.position.x - Player.transform.position.x) * Speed, 
-//		(transform.position.y - Player.transform.position.y) * Speed);
-//		GetComponent<Rigidbody2D>().velocity = -velocity;
+		vel3.x = Speed;
+		float pPosition = Player.transform.position.x;
+		if (pPosition > 0) {
+			transform.Translate (vel3);
+		}else{
+			transform.Translate (-vel3);
 	}
 }
