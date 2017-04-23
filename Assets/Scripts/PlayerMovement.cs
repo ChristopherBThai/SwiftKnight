@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 		animator.SetBool ("PlayerWalk", false);
 		animator.SetBool ("PlayerDeath", false);
 		gameOverText.GetComponent<Animator> ().SetBool ("GameOver", false);
+		hook.GetComponent<GrapplingHook> ().enabled = false;
 	}
 
 	//Shoots a hook

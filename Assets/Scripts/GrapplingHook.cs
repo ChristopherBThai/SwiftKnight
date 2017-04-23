@@ -23,6 +23,7 @@ public class GrapplingHook : MonoBehaviour {
 		lr.sortingLayerName = "Invisible";
 		rb = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
+		enabled = false;
 	}
 
 	void Update(){
@@ -34,6 +35,8 @@ public class GrapplingHook : MonoBehaviour {
 	}
 
 	public void shoot(float x, float y){
+		if (enabled)
+			return;
 		animator.SetTrigger ("Appear");
 		enabled = true;
 		rb.velocity = new Vector3 ();
