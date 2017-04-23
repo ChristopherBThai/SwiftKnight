@@ -32,6 +32,10 @@ public class PlayerMovement : MonoBehaviour {
 			hookShoot ();
 			move ();
 		}
+		if (transform.position.y < -10){
+			transform.position = new Vector3 ();
+			die ();
+		}
 	}
 
 	public void reset(){

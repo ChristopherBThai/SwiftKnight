@@ -7,6 +7,7 @@ public class GameOverReset : MonoBehaviour {
 	public GameObject player;
 	public GameObject deletor;
 	public GameObject score;
+	public GameObject controls;
 	private bool resetable;
 	private GameObject tempDeletor;
 
@@ -24,12 +25,14 @@ public class GameOverReset : MonoBehaviour {
 			player.GetComponent<PlayerAttack> ().reset ();
 			tempDeletor = Instantiate (deletor);
 			GetComponent<Animator> ().SetBool ("GameOver", false);
+			(controls.GetComponent<Animator>()).SetBool ("GameOver", false);
 			score.GetComponent<TextUpdate> ().setScore (0);
 		}
 	}
 
 	public void setResetable(){
 		resetable = true;
+		controls.GetComponent<Animator> ().SetBool ("GameOver", true);
 	}
 
 	public void finishedReset(){

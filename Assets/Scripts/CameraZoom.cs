@@ -12,6 +12,10 @@ public class CameraZoom : MonoBehaviour {
 	private Camera cam;
 	private float speed;
 
+	void Awake(){
+		Application.targetFrameRate = 60;
+	}
+
 	// Use this for initialization
 	void Start () {
 		defaultPos = transform.position;

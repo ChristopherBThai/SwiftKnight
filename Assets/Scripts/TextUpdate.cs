@@ -7,6 +7,7 @@ public class TextUpdate : MonoBehaviour {
 
 	private Text txt;
 	public int score;
+	private int highscore;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,8 @@ public class TextUpdate : MonoBehaviour {
 	}
 
 	void updateScore(){
-		txt.text = "Kills: " + score;
+		if (score > highscore)
+			highscore = score;
+		txt.text = "HighScore: "+highscore+"\nKills: " + score;
 	}
 }
