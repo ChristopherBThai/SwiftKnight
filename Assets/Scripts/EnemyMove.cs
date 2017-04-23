@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour {
-	private float Range;
-	public float Speed;
-	public int Health = 100;
-	public Transform Target;
-	private GameObject Enemy;
-	private GameObject Player;
-	private Vector3 vel3;
+	public float speed;
+	public int health;
+	private GameObject target;
+	private Vector3 vel;
+
 	// Use this for initialization
 	void Start () {
-		vel3 = new Vector3 ();
-		Enemy = GameObject.FindGameObjectWithTag ("Enemy");
-		Player = GameObject.FindGameObjectWithTag ("Player");
+		vel = new Vector3 ();
 	}
 	
 	// Update is called once per frame

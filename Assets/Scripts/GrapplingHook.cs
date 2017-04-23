@@ -8,33 +8,51 @@ public class GrapplingHook : MonoBehaviour {
 	public float strength;
 	public GameObject player;
 	private Rigidbody2D rb;
+	private SpriteRenderer sr;
 	private Vector2 vel;
 	private LineRenderer lr;
+	private Animator animator;
 	private float timer;
 
 	// Use this for initialization
 	void Start () {
 		Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),player.GetComponent<BoxCollider2D>());
 		lr = GetComponent<LineRenderer> ();
-		lr.sortingLayerName = "Background";
+		sr = GetComponent<SpriteRenderer> ();
+		sr.sortingLayerName = "Invisible";
+		lr.sortingLayerName = "Invisible";
 		rb = GetComponent<Rigidbody2D> ();
+		animator = GetComponent<Animator> ();
 	}
 
 	void Update(){
+		if (enabled) {
+			lr.SetPosition (0, transform.position);
+			lr.SetPosition (1, player.transform.position);
+			lr.SetColors (sr.color, sr.color);
+		}
+	}
+
+	public void shoot(float x, float y){
+		animator.SetTrigger ("Appear");
+		enabled = true;
+		rb.velocity = new Vector3 ();
+		vel.Set (x * speed, y * speed);
+		lr.sortingLayerName = "Player";
+		sr.sortingLayerName = "Player";
+		rb.AddForce (vel);
 		lr.SetPosition (0, transform.position);
 		lr.SetPosition (1, player.transform.position);
 	}
 
-	public void shoot(float x, float y){
-		enabled = true;
-		rb.velocity = new Vector3 ();
-		vel.Set (x * speed, y * speed);
-		lr.sortingLayerName = "Foreground";
-		rb.AddForce (vel);
+	public void disable(){
+		enabled = false;
+		lr.sortingLayerName = "Invisible";
+		sr.sortingLayerName = "Invisible";
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		enabled = false;
+		animator.SetTrigger ("Disappear");
 		rb.velocity = new Vector3 ();
 		vel.x = (transform.position.x - player.transform.position.x);
 		vel.y = (transform.position.y - player.transform.position.y);
