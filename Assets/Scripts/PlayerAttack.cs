@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour {
 	private bool attacking;
 	private float timer;
 	private Vector3 dst;
+	private bool dead;
 
 	// Use this for initialization
 	void Start () {
@@ -19,16 +20,17 @@ public class PlayerAttack : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
 		dst = new Vector3 ();
+		dead = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(!attackTimer() && Input.GetKeyDown(KeyCode.LeftShift))
+		if(!dead && !attackTimer() && Input.GetKeyDown(KeyCode.LeftShift))
 			attack ();
 	}
 
 	void attack(){
-		animator.SetTrigger ("PlayerAttack");
+		animator.SetBool ("PlayerAttack",true);
 		timer = attackLength;
 		attacking = true;
 		if (sr.flipX)
@@ -46,6 +48,7 @@ public class PlayerAttack : MonoBehaviour {
 				attacking = false;
 				gameObject.layer = 0;
 				rb.AddForce (-rb.velocity);
+				animator.SetBool ("PlayerAttack",false);
 				//rb.velocity = new Vector3 ();
 			}
 			//if (sr.flipX)
@@ -72,6 +75,8 @@ public class PlayerAttack : MonoBehaviour {
 
 	void checkCollision(GameObject obj){
 		if (!attacking && obj.tag == "Enemy") {
+			GetComponent<PlayerMovement>().die ();
+			dead = true;
 		}
 	}
 }

@@ -50,6 +50,7 @@ public class EnemyMove : MonoBehaviour {
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
 		GetComponent<BoxCollider2D> ().isTrigger = true;
 		animator.SetTrigger ("EnemyExplode");
+		gameObject.tag = "Dead";
 	}
 
 	public bool isDead(){

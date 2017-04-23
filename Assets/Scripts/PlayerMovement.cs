@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Animator animator;
 	private PlayerAttack pa;
 
+	private bool dead;
 	private Vector2 vel;
 
 	// Use this for initialization
@@ -21,11 +22,12 @@ public class PlayerMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		pa = GetComponent<PlayerAttack> ();
 		vel = new Vector3 (speed,0);
+		dead = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!pa.isAttacking ()) {
+		if (!dead && !pa.isAttacking ()) {
 			hookShoot ();
 			move ();
 		}
@@ -73,6 +75,15 @@ public class PlayerMovement : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col){
 		if (rb.velocity.y <= 0)
 			GetComponent<BoxCollider2D> ().isTrigger = false;
+	}
+
+	public void die(){
+		dead = true;
+		animator.SetBool ("PlayerDeath", true);
+	}
+
+	public bool isDead(){
+		return dead;
 	}
 
 }
