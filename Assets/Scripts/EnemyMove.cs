@@ -23,7 +23,8 @@ public class EnemyMove : MonoBehaviour {
 		float pPosition = Player.transform.position.x;
 		if (pPosition > 0) {
 			transform.Translate (vel3);
-		}else{
+		} else {
 			transform.Translate (-vel3);
+		}
 	}
 }
