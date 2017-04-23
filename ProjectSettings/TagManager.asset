@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Light
   - Enemy
+  - Grabable
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Enemies
   - FlyingEnemies
   - Background
-  - 
+  - Wall
   - 
   - 
   - 
