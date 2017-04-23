@@ -9,7 +9,7 @@ public class EnemySpawnerScript : MonoBehaviour {
 	public Transform[] groundSpawnPoint,flyingSpawnPoint;
 	public GameObject[] groundEnemies,flyingEnemies;
 
-	private float timer;
+	private float timer, handicap;
 
 
 	// Use this for initialization
@@ -23,9 +23,21 @@ public class EnemySpawnerScript : MonoBehaviour {
 			timer -= Time.deltaTime;
 			if (timer <= 0) {
 				spawnRandomEnemy ();
+				float min = 1 - handicap;
+				float max = spawnInterval - handicap/2f;
+				if (min < 0)
+					min = 0;
+				if (max < 1)
+					max = 1;
 				timer = Random.Range (1, spawnInterval);
+				handicap += .01f;
 			}
 		}
+		if (target.GetComponent<PlayerMovement> ().isDead()) {
+			handicap = 0;
+		}
+
+		print (handicap);
 	}
 
 	void spawnRandomEnemy(){
