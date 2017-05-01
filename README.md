@@ -15,8 +15,9 @@ One accomplishment that I'm definantly proud of is finishing within the time per
 Within 24 hours, I have learned more than I can imagine. I completely satisfied with what I was able to accomplish. Unity was much easier then I had anticipated. The structure of this application was really user-friendly. I am definantly using Unity for my next project.
 ## What's next for Swift Knight
 My next step for Swift Knight is to publish it on the Google Play Store. Implementing Android compatibility should be fairly easy using the Unity framework. There are some possibility that I might continue working on this project, but I am mostly using it as a stepping stone for larger projects. I believe that experience is the key to learning, and I have noticed some flaws in my program that I would like to redesign in my future ones. Overall, Swift Knight has given me a key experience to further my hobby as a game developer.
-
-#Video
+## Video
 https://www.youtube.com/watch?v=043be03jvxo&feature=youtu.be
 
-#Pictures
+## Pictures
+![Screenshot](http://i.imgur.com/R15bl9B.gif)
+![Screenshot](http://i.imgur.com/j4yOVgp.gif)
