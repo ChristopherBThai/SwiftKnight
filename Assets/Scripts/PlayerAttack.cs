@@ -25,8 +25,7 @@ public class PlayerAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!dead && !attackTimer() && Input.GetKeyDown(KeyCode.LeftShift))
-			attack ();
+		attackTimer ();
 	}
 
 	public void reset(){
@@ -36,14 +35,19 @@ public class PlayerAttack : MonoBehaviour {
 		animator.SetBool ("PlayerAttack",false);
 	}
 
-	void attack(){
+	public void attack(int dir){
+		if(!(!dead && !attacking))
+			return;
 		animator.SetBool ("PlayerAttack",true);
 		timer = attackLength;
 		attacking = true;
-		if (sr.flipX)
+		if (dir < 0) {
 			dst.x = -attackDst;
-		else
+			sr.flipX = true;
+		} else {
 			dst.x = attackDst;
+			sr.flipX = false;
+		}
 		rb.AddForce (dst);
 		gameObject.layer = 12;
 	}

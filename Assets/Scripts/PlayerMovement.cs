@@ -28,10 +28,6 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!dead && !pa.isAttacking ()) {
-			hookShoot ();
-			move ();
-		}
 		if (transform.position.y < -10){
 			transform.position = new Vector3 ();
 			die ();
@@ -46,32 +42,27 @@ public class PlayerMovement : MonoBehaviour {
 		hook.GetComponent<GrapplingHook> ().enabled = false;
 	}
 
-	//Shoots a hook
-	private void hookShoot(){
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			if (Input.GetKey (KeyCode.W)) {
-				hook.transform.position = new Vector2 (transform.position.x, transform.position.y);
-				float x = 0;
-				if (Input.GetKey (KeyCode.D))
-					x += .3f;
-				if (Input.GetKey (KeyCode.A))
-					x -= .3f;
-				hook.GetComponent<GrapplingHook> ().shoot (x, 1);
-			} else if (Input.GetKey (KeyCode.S)&&transform.position.y>0) {
-				GetComponent<BoxCollider2D> ().isTrigger = true;
-			}
-		}
+	public void hookShot(float angle){
+		hook.transform.position = new Vector2 (transform.position.x, transform.position.y);
+		float x = 0;
+		x = Mathf.Cos (angle) * .4f;
+		x = 0;
+		hook.GetComponent<GrapplingHook> ().shoot (x, 1);
 	}
 
-	//Moves the player
-	private void move(){
+	public void dropDown(){
+		if(transform.position.y>0)
+			GetComponent<BoxCollider2D> ().isTrigger = true;
+	}
+
+	public void move(int dir){
 		vel.x = 0;
 		vel.y = 0;
-		if (Input.GetKey (KeyCode.D)) {
+		if (dir>0) {
 			sr.flipX = false;
 			vel.x = speed;
 			animator.SetBool ("PlayerWalk", true);
-		} else if (Input.GetKey (KeyCode.A)) {
+		} else if (dir<0) {
 			sr.flipX = true;
 			vel.x = -speed;
 			animator.SetBool ("PlayerWalk", true);
@@ -79,6 +70,10 @@ public class PlayerMovement : MonoBehaviour {
 			animator.SetBool ("PlayerWalk", false);
 		}
 		transform.Translate (vel);
+	}
+
+	public bool movable(){
+		return !dead && !pa.isAttacking ();
 	}
 
 	public void push(Vector2 force){

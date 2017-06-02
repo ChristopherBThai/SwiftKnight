@@ -20,7 +20,6 @@ public class GameOverReset : MonoBehaviour {
 	void Update () {
 		if (resetable&&Input.anyKeyDown) {
 			resetable = false;
-			print ("RESET");
 			player.GetComponent<PlayerMovement> ().reset ();
 			player.GetComponent<PlayerAttack> ().reset ();
 			tempDeletor = Instantiate (deletor);

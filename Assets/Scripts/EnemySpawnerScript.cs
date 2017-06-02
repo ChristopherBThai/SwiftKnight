@@ -36,8 +36,6 @@ public class EnemySpawnerScript : MonoBehaviour {
 		if (target.GetComponent<PlayerMovement> ().isDead()) {
 			handicap = 0;
 		}
-
-		print (handicap);
 	}
 
 	void spawnRandomEnemy(){
