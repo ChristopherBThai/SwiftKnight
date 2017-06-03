@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
 		pa = GetComponent<PlayerAttack> ();
 		vel = new Vector3 (speed,0);
 		dead = false;
+		die ();
 	}
 	
 	// Update is called once per frame

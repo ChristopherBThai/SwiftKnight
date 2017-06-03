@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawnerScript : MonoBehaviour {
 
+	public bool spawn;
 	public GameObject target,score;
 	public float spawnInterval;
 	public Transform[] groundSpawnPoint,flyingSpawnPoint;
@@ -15,10 +16,13 @@ public class EnemySpawnerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timer = spawnInterval;
+		spawn = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (!spawn)
+			return;
 		if (timer > 0) {
 			timer -= Time.deltaTime;
 			if (timer <= 0) {
