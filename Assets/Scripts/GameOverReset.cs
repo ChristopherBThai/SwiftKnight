@@ -7,31 +7,49 @@ public class GameOverReset : MonoBehaviour {
 	public GameObject player;
 	public GameObject deletor;
 	public GameObject score;
-	public GameObject controls;
+	public EnemySpawnerScript spawn;
+	public bool runnable;
 	private bool resetable;
 	private GameObject tempDeletor;
 
 	// Use this for initialization
 	void Start () {
 		resetable = false;
+		runnable = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (resetable&&Input.anyKeyDown) {
+		if (runnable&&resetable&&Input.anyKeyDown) {
 			resetable = false;
 			player.GetComponent<PlayerMovement> ().reset ();
 			player.GetComponent<PlayerAttack> ().reset ();
 			tempDeletor = Instantiate (deletor);
 			GetComponent<Animator> ().SetBool ("GameOver", false);
-			(controls.GetComponent<Animator>()).SetBool ("GameOver", false);
 			score.GetComponent<TextUpdate> ().setScore (0);
 		}
 	}
 
+	public void start(){
+		runnable = true;
+		resetable = false;
+		spawn.spawn = true;
+		player.GetComponent<PlayerMovement> ().reset ();
+		player.GetComponent<PlayerAttack> ().reset ();
+		GetComponent<Animator> ().SetBool ("GameOver", false);
+		GetComponent<Animator> ().SetTrigger ("vanish");
+		score.GetComponent<TextUpdate> ().setScore (0);
+	}
+
+	public void  stop(){
+		runnable = false;
+		resetable = true;
+		spawn.spawn = false;
+		player.GetComponent<PlayerMovement> ().die ();
+	}
+
 	public void setResetable(){
 		resetable = true;
-		controls.GetComponent<Animator> ().SetBool ("GameOver", true);
 	}
 
 	public void finishedReset(){
