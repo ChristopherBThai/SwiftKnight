@@ -34,18 +34,26 @@ public class GrapplingHook : MonoBehaviour {
 		}
 	}
 
-	public void shoot(float x, float y){
+	public bool shoot(float x, float y){
 		if (enabled)
-			return;
+			return false;
 		animator.SetTrigger ("Appear");
 		enabled = true;
 		rb.velocity = new Vector3 ();
+		if (x > .4) {
+			x = .4f;
+			y = .92f;
+		}if (x < -.4) {
+			x = -.4f;
+			y = .92f;
+		}
 		vel.Set (x * speed, y * speed);
 		lr.sortingLayerName = "Player";
 		sr.sortingLayerName = "Player";
 		rb.AddForce (vel);
 		lr.SetPosition (0, transform.position);
 		lr.SetPosition (1, player.transform.position);
+		return true;
 	}
 
 	public void disable(){

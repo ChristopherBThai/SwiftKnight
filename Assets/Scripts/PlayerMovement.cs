@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour {
 	private PlayerAttack pa;
 
 	private bool dead;
+	private float deadCurrent, deadMax;
+	private float hookCurrent, hookMax;
 	private Vector2 vel;
 
 	// Use this for initialization
@@ -24,6 +26,8 @@ public class PlayerMovement : MonoBehaviour {
 		pa = GetComponent<PlayerAttack> ();
 		vel = new Vector3 (speed,0);
 		dead = false;
+		deadMax = 1.3f;
+		hookMax = 1f;
 		die ();
 	}
 	
@@ -33,6 +37,10 @@ public class PlayerMovement : MonoBehaviour {
 			transform.position = new Vector3 ();
 			die ();
 		}
+		if (deadCurrent > 0)
+			deadCurrent -= Time.deltaTime;
+		if (hookCurrent > 0)
+			hookCurrent -= Time.deltaTime;
 	}
 
 	public void reset(){
@@ -41,14 +49,15 @@ public class PlayerMovement : MonoBehaviour {
 		animator.SetBool ("PlayerDeath", false);
 		gameOverText.GetComponent<Animator> ().SetBool ("GameOver", false);
 		hook.GetComponent<GrapplingHook> ().enabled = false;
+		deadCurrent = deadMax;
 	}
 
-	public void hookShot(float angle){
+	public void hookShot(Vector2 dir){
+		if (hookCurrent > 0)
+			return;
 		hook.transform.position = new Vector2 (transform.position.x, transform.position.y);
-		float x = 0;
-		x = Mathf.Cos (angle) * .4f;
-		x = 0;
-		hook.GetComponent<GrapplingHook> ().shoot (x, 1);
+		if (hook.GetComponent<GrapplingHook> ().shoot (dir.x, dir.y))
+			hookCurrent = hookMax;
 	}
 
 	public void dropDown(){
@@ -57,6 +66,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void move(int dir){
+		if (deadCurrent > 0)
+			return;
 		vel.x = 0;
 		vel.y = 0;
 		if (dir>0) {

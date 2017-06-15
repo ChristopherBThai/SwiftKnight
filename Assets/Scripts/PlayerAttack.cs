@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour {
 	private float timer;
 	private Vector3 dst;
 	private bool dead;
+	private float cooldownCurrent, cooldownMax;
 
 	// Use this for initialization
 	void Start () {
@@ -21,11 +22,14 @@ public class PlayerAttack : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		dst = new Vector3 ();
 		dead = false;
+		cooldownMax = .5f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		attackTimer ();
+		if (cooldownCurrent > 0)
+			cooldownCurrent -= Time.deltaTime;
 	}
 
 	public void reset(){
@@ -36,7 +40,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	public void attack(int dir){
-		if(!(!dead && !attacking))
+		if(!(!dead && !attacking) || cooldownCurrent > 0)
 			return;
 		animator.SetBool ("PlayerAttack",true);
 		timer = attackLength;
@@ -50,6 +54,7 @@ public class PlayerAttack : MonoBehaviour {
 		}
 		rb.AddForce (dst);
 		gameObject.layer = 12;
+		cooldownCurrent = cooldownMax;
 	}
 
 	bool attackTimer(){
