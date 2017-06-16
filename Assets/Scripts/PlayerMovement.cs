@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public GameObject hook;
 	public GameObject gameOverText;
+	public PauseScript ps;
 
 	private SpriteRenderer sr;
 	private Rigidbody2D rb;
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour {
 		gameOverText.GetComponent<Animator> ().SetBool ("GameOver", false);
 		hook.GetComponent<GrapplingHook> ().enabled = false;
 		deadCurrent = deadMax;
+		ps.show ();
 	}
 
 	public void hookShot(Vector2 dir){
@@ -100,6 +102,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void die(){
 		dead = true;
 		animator.SetBool ("PlayerDeath", true);
+		ps.hide ();
 	}
 
 	public void showGameOverText(){

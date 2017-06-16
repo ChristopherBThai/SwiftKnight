@@ -9,13 +9,11 @@ public class GameOverReset : MonoBehaviour {
 	public GameObject score;
 	public EnemySpawnerScript spawn;
 	public bool runnable;
-	private bool resetable;
+	public bool resetable;
 	private GameObject tempDeletor;
 
 	// Use this for initialization
 	void Start () {
-		resetable = false;
-		runnable = false;
 	}
 	
 	// Update is called once per frame
@@ -37,7 +35,6 @@ public class GameOverReset : MonoBehaviour {
 		player.GetComponent<PlayerMovement> ().reset ();
 		player.GetComponent<PlayerAttack> ().reset ();
 		GetComponent<Animator> ().SetBool ("GameOver", false);
-		GetComponent<Animator> ().SetTrigger ("vanish");
 		score.GetComponent<TextUpdate> ().setScore (0);
 	}
 

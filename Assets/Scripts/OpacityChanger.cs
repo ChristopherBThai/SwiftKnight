@@ -17,17 +17,21 @@ public class OpacityChanger : MonoBehaviour {
 	void Update () {
 		if(visible && group.alpha<1){
 			group.alpha += Time.deltaTime / transitionTime;
-			if (group.alpha > 1)
+			if (group.alpha >= 1) {
 				group.alpha = 1;
+			}
 		}else if(!visible && group.alpha>0){
 			group.alpha -= Time.deltaTime / transitionTime;
-			if (group.alpha < 0)
+			if (group.alpha <= 0) {
 				group.alpha = 0;
+				gameObject.SetActive (false);
+			}
 		}
 	}
 
 	public void setVisible(){
 		visible = true;
+		gameObject.SetActive (true);
 	}
 
 	public void setInvisible(){
