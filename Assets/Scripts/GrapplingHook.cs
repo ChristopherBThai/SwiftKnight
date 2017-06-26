@@ -79,7 +79,6 @@ public class GrapplingHook : MonoBehaviour {
 		vel.x *= strength;
 		vel.y *= strength;
 		player.GetComponent<PlayerMovement> ().push (vel);
-		player.GetComponent<BoxCollider2D> ().isTrigger = true;
 
 	}
 

@@ -63,8 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void dropDown(){
-		if(transform.position.y>0)
-			GetComponent<BoxCollider2D> ().isTrigger = true;
+		//TODO
 	}
 
 	public void move(int dir){
@@ -92,11 +91,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void push(Vector2 force){
 		rb.AddForce (force);
-	}
-
-	void OnTriggerEnter2D(Collider2D col){
-		if (rb.velocity.y <= 0)
-			GetComponent<BoxCollider2D> ().isTrigger = false;
 	}
 
 	public void die(){
