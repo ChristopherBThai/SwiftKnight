@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class PauseScript : MonoBehaviour {
 
 	public PlayerMovement pm;
+	public GameObject pauseScreen;
+	public Camera cam;
+	private GameObject tempPauseScreen;
 	private bool visible;
 
 	void Start(){
@@ -27,15 +30,20 @@ public class PauseScript : MonoBehaviour {
 	}
 
 	public void pause(){
-		if (Time.timeScale != 1)
+		if (Time.timeScale != 1) {
 			Time.timeScale = 1;
-		else if (Time.timeScale != 0)
+			Destroy (tempPauseScreen);
+		} else if (Time.timeScale != 0) {
 			Time.timeScale = 0;
+			tempPauseScreen = Instantiate (pauseScreen) as GameObject;
+			tempPauseScreen.GetComponent<PauseCanvasRenderCamera> ().setCamera (cam);
+		}
 	}
 
 	public void hide(){
 		visible = false;
 		gameObject.GetComponent<Button> ().interactable = false;
+		Destroy (tempPauseScreen);
 	}
 
 	public void show(){

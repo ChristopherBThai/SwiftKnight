@@ -6,16 +6,17 @@ using UnityEngine;
 public class TextUpdate : MonoBehaviour {
 
 	private Text txt;
-	public int score;
+	private int score;
 	private int highscore;
 
 	// Use this for initialization
 	void Start () {
+		score = 0;
 		txt = GetComponent<Text> ();
 		highscore = PlayerPrefs.GetInt("Highscore",0);
 		updateScore ();
 	}
-	
+
 	public void setScore(int newScore){
 		score = newScore;
 		updateScore ();
