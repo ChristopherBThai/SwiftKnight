@@ -11,10 +11,6 @@ public class GameOverReset : MonoBehaviour {
 	public bool runnable;
 	public bool resetable;
 	private GameObject tempDeletor;
-
-	// Use this for initialization
-	void Start () {
-	}
 	
 	// Update is called once per frame
 	void Update () {

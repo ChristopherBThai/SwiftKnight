@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject hook;
 	public GameObject gameOverText;
 	public PauseScript ps;
+	public AdScript ad;
 
 	private SpriteRenderer sr;
 	private Rigidbody2D rb;
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour {
 		hook.GetComponent<GrapplingHook> ().enabled = false;
 		deadCurrent = deadMax;
 		ps.show ();
+		ad.hide ();
 	}
 
 	public void hookShot(Vector2 dir){
@@ -60,10 +62,6 @@ public class PlayerMovement : MonoBehaviour {
 		hook.transform.position = new Vector2 (transform.position.x, transform.position.y);
 		if (hook.GetComponent<GrapplingHook> ().shoot (dir.x, dir.y))
 			hookCurrent = hookMax;
-	}
-
-	public void dropDown(){
-		//TODO
 	}
 
 	public void move(int dir){
@@ -94,9 +92,12 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void die(){
+		if (dead)
+			return;
 		dead = true;
 		animator.SetBool ("PlayerDeath", true);
 		ps.hide ();
+		ad.show ();
 	}
 
 	public void showGameOverText(){
