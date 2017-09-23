@@ -8,6 +8,7 @@ public class GameOverReset : MonoBehaviour {
 	public GameObject deletor;
 	public GameObject score;
 	public EnemySpawnerScript spawn;
+	//public Text help;
 	public bool runnable;
 	public bool resetable;
 	private GameObject tempDeletor;
